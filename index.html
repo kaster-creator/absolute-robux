@@ -1,256 +1,377 @@
 
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ABSOLUTE ROBUX</title>
+<title>ABSOLUTE ROBUX — Маркетплейс</title>
 <style>
+:root{
+ --bg:#0e1018;
+ --panel:#191c28;
+ --line:#303446;
+ --purple:#9568ff;
+ --text:#f5f5fa;
+ --muted:#a0a5b7;
+}
 *{box-sizing:border-box}
 body{
  margin:0;
- background:#0c0a16;
- color:white;
- font-family:Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ font-family:system-ui,Arial,sans-serif;
 }
 header{
- padding:20px;
- background:#19132c;
- border-bottom:1px solid #49336e;
+ background:#171925;
+ border-bottom:1px solid var(--line);
+ padding:16px 5%;
+ position:sticky;
+ top:0;
+ z-index:5;
+}
+.top{
+ max-width:1150px;
+ margin:auto;
  display:flex;
- justify-content:space-between;
  align-items:center;
+ gap:16px;
+ flex-wrap:wrap;
 }
-.logo{font-weight:900;color:#c49aff}
-.tag{font-size:11px;color:#b5a5cc}
-main{max-width:850px;margin:auto;padding:25px 16px}
-h1{font-size:36px;margin-bottom:8px}
-h1 span{color:#b88aff}
-p{color:#bcb3ce;line-height:1.5}
-.card{
- background:#1c1630;
- border:1px solid #49376d;
- border-radius:18px;
- padding:20px;
- margin:20px 0;
+.logo{
+ font-size:20px;
+ font-weight:900;
+ color:#bb9bff;
 }
-.grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:12px;
+.search{
+ flex:1;
+ min-width:160px;
 }
-.product{
- padding:22px 10px;
- text-align:center;
- border-radius:14px;
- background:#2b2047;
- border:1px solid #624b91;
- cursor:pointer;
-}
-.product:hover{border-color:#d3aaff}
-.amount{
- font-size:27px;
- font-weight:bold;
- color:#d2b3ff;
-}
-small{color:#a99ac1}
-label{display:block;margin:16px 0 7px}
 input,select{
  width:100%;
- padding:14px;
- background:#100d1e;
- border:1px solid #5a4481;
- border-radius:10px;
+ padding:13px;
+ background:#242735;
  color:white;
- font-size:16px;
+ border:1px solid #41465a;
+ border-radius:11px;
+ font-size:15px;
 }
-button{
- width:100%;
- padding:16px;
- background:#a46cff;
- color:#130c21;
- border:0;
+main{
+ max-width:1150px;
+ margin:auto;
+ padding:22px 16px;
+}
+.hero{
+ background:linear-gradient(120deg,#33205e,#181b2b);
+ border:1px solid #55417f;
+ padding:30px 24px;
+ border-radius:20px;
+ margin-bottom:25px;
+}
+.hero h1{
+ font-size:clamp(28px,5vw,46px);
+ margin:0 0 12px;
+}
+.hero p{color:#d2c8e5}
+.pill{
+ display:inline-block;
+ padding:8px 13px;
+ background:#493174;
+ border-radius:20px;
+ font-size:12px;
+ margin-bottom:12px;
+}
+h2{font-size:23px}
+.categories{
+ display:flex;
+ gap:10px;
+ overflow-x:auto;
+ margin:18px 0 26px;
+}
+.cat{
+ white-space:nowrap;
+ padding:12px 17px;
+ background:#232635;
+ border:1px solid var(--line);
  border-radius:12px;
- font-size:16px;
- font-weight:bold;
- margin-top:18px;
  cursor:pointer;
 }
-.result{
- background:#2b2047;
- border-radius:12px;
- padding:17px;
- text-align:center;
+.cat.active{
+ background:#443071;
+ border-color:var(--purple);
 }
-.result strong{
- display:block;
- font-size:24px;
- color:#d7bcff;
- margin-top:8px;
+.products{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+ gap:16px;
 }
-.warning{
- background:#302440;
- padding:13px;
+.product{
+ background:var(--panel);
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:16px;
+}
+.product:hover{border-color:var(--purple)}
+.picture{
+ background:linear-gradient(135deg,#463276,#24223f);
+ border-radius:13px;
+ height:125px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:45px;
+}
+.product h3{margin:13px 0 6px}
+.muted{color:var(--muted);font-size:13px}
+.price{
+ font-size:23px;
+ font-weight:800;
+ margin:14px 0;
+}
+button{
+ background:var(--purple);
+ color:white;
+ border:0;
  border-radius:10px;
+ padding:12px 16px;
+ font-weight:700;
+ cursor:pointer;
+}
+.buy{width:100%}
+.box{
+ background:var(--panel);
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:20px;
+ margin:24px 0;
+}
+label{
+ display:block;
+ margin:14px 0 7px;
+ color:#d4d1df;
+}
+.info{
+ background:#28233c;
+ border-radius:10px;
+ padding:13px;
+ color:#d4c8e8;
  font-size:13px;
- margin-top:18px;
+ margin-top:15px;
 }
 .order{
- padding:12px;
- background:#291f40;
- border-radius:10px;
- margin:10px 0;
- overflow-wrap:anywhere;
+ border-bottom:1px solid var(--line);
+ padding:13px 0;
+ font-size:14px;
 }
+.hidden{display:none}
 footer{
  text-align:center;
  padding:30px;
- color:#9588aa;
+ color:var(--muted);
  font-size:12px;
+}
+@media(max-width:450px){
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .product{padding:11px}
+ .picture{height:100px}
+ .price{font-size:19px}
+ .logo{font-size:18px}
 }
 </style>
 </head>
 <body>
 
 <header>
+<div class="top">
  <div class="logo">◆ ABSOLUTE ROBUX</div>
- <div class="tag">DEMO STORE</div>
+ <input class="search" id="search"
+ placeholder="🔍 Поиск товаров...">
+</div>
 </header>
 
 <main>
-<h1>Покупай <span>Robux</span></h1>
-<p>
-Рассчитай стоимость Robux в кыргызских сомах.
-Учитывай комиссию Game Pass и наценку.
-</p>
+<section class="hero">
+ <div class="pill">🎮 ИГРОВОЙ МАРКЕТПЛЕЙС</div>
+ <h1>Игровые товары<br>в одном месте</h1>
+ <p>Выбирай товары, сравнивай цены и оформляй
+ тестовые заказы в удобном интерфейсе.</p>
+ <button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
+ Смотреть каталог
+ </button>
+</section>
 
-<h2>💎 Выбери количество</h2>
-<div class="grid" id="products"></div>
+<h2 id="catalog">🛒 Каталог товаров</h2>
 
-<div class="card">
-<h2>🛒 Оформление заказа</h2>
+<div class="categories">
+ <div class="cat active" data-cat="all">Все товары</div>
+ <div class="cat" data-cat="small">До 250 R$</div>
+ <div class="cat" data-cat="medium">250–1000 R$</div>
+ <div class="cat" data-cat="large">От 1000 R$</div>
+</div>
 
-<label>Сколько Robux должен получить игрок?</label>
-<input id="amount" type="number" min="1" value="100">
+<div class="products" id="products"></div>
 
-<label>Стоимость 100 Robux для продавца (сом)</label>
-<input id="cost" type="number" min="0" value="100">
+<section class="box hidden" id="checkout">
+ <h2>🛍️ Оформление заказа</h2>
+ <p id="selected"></p>
 
-<label>Комиссия Game Pass</label>
-<select id="commission">
-<option value="0.7">30% — игрок получает 70%</option>
-<option value="0.6">40% — игрок получает 60%</option>
-</select>
+ <label>Ник Roblox</label>
+ <input id="nickname" placeholder="Username" maxlength="20">
 
-<label>Наценка магазина</label>
-<select id="markup">
-<option value="0.1">10%</option>
-<option value="0.2" selected>20%</option>
-<option value="0.3">30%</option>
-</select>
+ <label>Количество Robux</label>
+ <input id="quantity" readonly>
 
-<div class="grid" style="margin-top:20px">
- <div class="result">
-  <small>Цена Game Pass</small>
-  <strong id="passPrice">—</strong>
+ <label>Стоимость заказа</label>
+ <input id="total" readonly>
+
+ <button class="buy" onclick="placeOrder()">
+ Создать тестовый заказ
+ </button>
+
+ <div class="info">
+ ⚠️ Это демонстрационный магазин.
+ Деньги не списываются, Robux не выдаются.
+ Ссылка на Game Pass не требуется.
  </div>
- <div class="result">
-  <small>Цена в сомах</small>
-  <strong id="somPrice">—</strong>
+</section>
+
+<section class="box">
+ <h2>📦 Мои заказы</h2>
+ <div id="orders" class="muted">
+ Пока заказов нет.
  </div>
-</div>
+</section>
 
-<label>Твой ник Roblox</label>
-<input id="nickname" placeholder="Username">
-
-<label>Ссылка на Game Pass</label>
-<input id="gamepass" type="url"
- placeholder="https://www.roblox.com/game-pass/...">
-
-<button onclick="createOrder()">
-Создать тестовый заказ
-</button>
-
-<div class="warning">
-⚠️ Это демонстрация. Деньги не списываются,
-а Robux не выдаются. Для настоящих продаж
-нужны разрешённый способ поставки и
-подключение торговой оплаты.
-</div>
-</div>
-
-<div class="card">
-<h2>📦 История тестовых заказов</h2>
-<div id="orders">Пока заказов нет</div>
-</div>
+<section class="box">
+ <h2>❓ Как это работает?</h2>
+ <p class="muted">
+ 1. Выбираешь товар из каталога.<br>
+ 2. Указываешь свой ник Roblox.<br>
+ 3. Создаёшь тестовый заказ.<br>
+ 4. Заказ сохраняется в этом браузере.
+ </p>
+ <div class="info">
+ Настоящие платежи и выдача цифровых товаров
+ будут доступны только после подключения
+ разрешённого платёжного и товарного сервиса.
+ </div>
+</section>
 </main>
 
 <footer>
-ABSOLUTE ROBUX © 2026
-<br>
-Независимый проект, не связанный с Roblox.
+ ABSOLUTE ROBUX © 2026<br>
+ Независимый демонстрационный проект.
+ Не связан с Roblox Corporation.
 </footer>
 
 <script>
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const products = [50,100,250,500,1000,2000];
+const catalog=[
+ {amount:50,price:75},
+ {amount:100,price:150},
+ {amount:250,price:375},
+ {amount:500,price:750},
+ {amount:1000,price:1500},
+ {amount:2000,price:3000},
+ {amount:5000,price:7500},
+ {amount:10000,price:15000}
+];
 
-$("products").innerHTML = products.map(n => `
- <div class="product" onclick="selectAmount(${n})">
-  <div class="amount">${n} R$</div>
-  <small>Выбрать</small>
- </div>
-`).join("");
+// Примерные цены для демонстрации.
+// Замени их после расчёта реальной себестоимости.
 
-let current = {};
+let category="all";
+let selected=null;
 
-function selectAmount(n){
- $("amount").value=n;
- calculate();
- document.querySelector(".card").scrollIntoView({
-  behavior:"smooth"
+function renderProducts(){
+ const query=$("search").value.toLowerCase();
+
+ const filtered=catalog.filter(p=>{
+  const match=p.amount.toString().includes(query)
+   ||"robux".includes(query);
+
+  const group=category==="all" ||
+   (category==="small" && p.amount<250) ||
+   (category==="medium" &&
+    p.amount>=250 && p.amount<=1000) ||
+   (category==="large" && p.amount>1000);
+
+  return match && group;
  });
+
+ $("products").innerHTML=filtered.map(p=>`
+ <article class="product">
+  <div class="picture">💎</div>
+  <h3>${p.amount.toLocaleString("ru-RU")} R$</h3>
+  <div class="muted">Игровая валюта</div>
+  <div class="price">${p.price.toLocaleString("ru-RU")} сом</div>
+  <button class="buy" onclick="buy(${p.amount})">
+   Купить
+  </button>
+ </article>
+ `).join("") || "<p>Товары не найдены</p>";
 }
 
-function calculate(){
- const amount=Math.max(
-  1,Math.floor(Number($("amount").value)||1)
- );
- const cost=Math.max(0,Number($("cost").value)||0);
- const share=Number($("commission").value);
- const markup=Number($("markup").value);
+function buy(amount){
+ selected=catalog.find(p=>p.amount===amount);
+ if(!selected)return;
 
- const pass=Math.ceil(amount/share);
- const som=Math.ceil(pass*cost/100*(1+markup));
+ $("checkout").classList.remove("hidden");
+ $("selected").textContent=
+  "Выбран пакет: "+selected.amount+" Robux";
+ $("quantity").value=selected.amount+" R$";
+ $("total").value=selected.price+" сом";
 
- current={amount,pass,som};
-
- $("passPrice").textContent=pass+" R$";
- $("somPrice").textContent=som+" сом";
+ $("checkout").scrollIntoView({behavior:"smooth"});
 }
-
-["amount","cost","commission","markup"].forEach(id=>{
- $(id).addEventListener("input",calculate);
-});
 
 function getOrders(){
  try{
   return JSON.parse(
-   localStorage.getItem("absolute_orders")||"[]"
+   localStorage.getItem("absolute_market_orders")||"[]"
   );
- }catch(e){
+ }catch{
   return [];
  }
 }
 
-function showOrders(){
+function placeOrder(){
+ if(!selected)return;
+
+ const nickname=$("nickname").value.trim();
+
+ if(!/^[A-Za-z0-9_]{3,20}$/.test(nickname)){
+  alert("Введите корректный ник Roblox");
+  return;
+ }
+
  const orders=getOrders();
- $("orders").innerHTML="";
+
+ orders.unshift({
+  id:"DEMO-"+Date.now(),
+  nickname,
+  amount:selected.amount,
+  price:selected.price
+ });
+
+ localStorage.setItem(
+  "absolute_market_orders",
+  JSON.stringify(orders.slice(0,50))
+ );
+
+ $("checkout").classList.add("hidden");
+ $("nickname").value="";
+ renderOrders();
+
+ alert("Тестовый заказ создан!");
+}
+
+function renderOrders(){
+ const orders=getOrders();
+ $("orders").replaceChildren();
 
  if(!orders.length){
-  $("orders").textContent="Пока заказов нет";
+  $("orders").textContent="Пока заказов нет.";
   return;
  }
 
@@ -258,48 +379,29 @@ function showOrders(){
   const div=document.createElement("div");
   div.className="order";
   div.textContent=
-   o.id+" | "+o.nickname+
-   " | "+o.amount+" R$ | "+
-   o.som+" сом | ТЕСТ";
+   o.id+" • "+o.nickname+" • "+
+   o.amount+" R$ • "+o.price+
+   " сом • Тестовый";
   $("orders").appendChild(div);
  });
 }
 
-function createOrder(){
- const nickname=$("nickname").value.trim();
- const link=$("gamepass").value.trim();
+$("search").addEventListener("input",renderProducts);
 
- if(!/^[a-zA-Z0-9_]{3,20}$/.test(nickname)){
-  alert("Введите корректный ник Roblox");
-  return;
- }
-
- if(!/^https:\/\/(www\.)?roblox\.com\/game-pass\/\d+/i.test(link)){
-  alert("Введите ссылку на Game Pass с roblox.com");
-  return;
- }
-
- const orders=getOrders();
-
- orders.unshift({
-  ...current,
-  nickname,
-  link,
-  id:"DEMO-"+Date.now(),
-  status:"Тестовый заказ"
+document.querySelectorAll(".cat").forEach(el=>{
+ el.addEventListener("click",()=>{
+  document.querySelectorAll(".cat").forEach(c=>
+   c.classList.remove("active")
+  );
+  el.classList.add("active");
+  category=el.dataset.cat;
+  renderProducts();
  });
+});
 
- localStorage.setItem(
-  "absolute_orders",
-  JSON.stringify(orders.slice(0,30))
- );
-
- showOrders();
- alert("Тестовый заказ создан!");
-}
-
-calculate();
-showOrders();
+renderProducts();
+renderOrders();
 </script>
 </body>
 </html>
+
